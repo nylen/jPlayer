@@ -4,8 +4,8 @@
  *
  * Copyright (c) 2009 - 2010 Happyworm Ltd
  * Dual licensed under the MIT and GPL licenses.
- *  - http://www.opensource.org/licenses/mit-license.php
- *  - http://www.gnu.org/copyleft/gpl.html
+ *	- http://www.opensource.org/licenses/mit-license.php
+ *	- http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Mark J Panaghiston
  * Version: 1.2.0
@@ -42,7 +42,7 @@ class Jplayer {
 	private var isPlaying:Boolean = false;
 	private var isNewPlayHead:Boolean = false;
 	private var hasEnded:Boolean = false; // Flag raised in Sound.onSoundComplete() and captured in progressBroker()
-  private var failIfNotPlaying:Boolean = false;
+	private var failIfNotPlaying:Boolean = false;
 	
 	private var playPosition:Number = 0;
 	
@@ -165,11 +165,11 @@ class Jplayer {
 	}
 
 	function auto_play_mp3():Void {
-    if (this.playPosition == 0) {
+		if (this.playPosition == 0) {
 			this.failIfNotPlaying = false;
-      setTimeout(this, "checkIfPlaying", 300);
-    }
-    
+			setTimeout(this, "checkIfPlaying", 300);
+		}
+		
 		this.mySound.start(this.playPosition/1000);
 		this.isPlaying = true;
 		this.isNewPlayHead = false;
@@ -289,22 +289,22 @@ class Jplayer {
 			clearInterval(this.progressBroker_id);
 		}
 	}
-  
-  function checkIfPlaying():Void {
+	
+	function checkIfPlaying():Void {
 		if (this.isPlaying && this.mySound.position == 0) {
-      if (!this.isLoaded) {
-        setTimeout(this, "checkIfPlaying", 300);
-      } else if (this.isPlaying && this.mySound.position == 0) {
-        if (this.failIfNotPlaying) {
-          ExternalInterface.call(this.jQuery, "jPlayerOnFlashFailure");
-          stop_mp3();
-        } else {
-          this.failIfNotPlaying = true;
-          setTimeout(this, "checkIfPlaying", 5000);
-        }
-      }
+			if (!this.isLoaded) {
+				setTimeout(this, "checkIfPlaying", 300);
+			} else if (this.isPlaying && this.mySound.position == 0) {
+				if (this.failIfNotPlaying) {
+					ExternalInterface.call(this.jQuery, "jPlayerOnFlashFailure");
+					stop_mp3();
+				} else {
+					this.failIfNotPlaying = true;
+					setTimeout(this, "checkIfPlaying", 5000);
+				}
+			}
 		}
-  }
+	}
 
 	function play_head_mp3( played_percent:Number ):Boolean {
 	
